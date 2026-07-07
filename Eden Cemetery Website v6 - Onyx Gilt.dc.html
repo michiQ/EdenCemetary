@@ -24,12 +24,12 @@
 
   <!-- ============ HEADER (shared) ============ -->
   <header style="background:{{ dark }};border-bottom:1px solid {{ dline }};position:sticky;top:0;z-index:50">
-    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:88px;gap:32px">
+    <div style="max-width:1280px;margin:0 auto;padding:14px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;min-height:88px;gap:14px 32px;flex-wrap:wrap">
       <div onClick="{{ goHome }}" style="display:flex;flex-direction:column;cursor:pointer;line-height:1">
-        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:30px;letter-spacing:0.04em;color:#F6F4EA">EDEN <span style="color:{{ gold }}">CEMETERY</span></span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(23px,4vw,30px);letter-spacing:0.04em;color:#F6F4EA">EDEN <span style="color:{{ gold }}">CEMETERY</span></span>
         <span style="font-size:10.5px;letter-spacing:0.32em;color:{{ dsub }};margin-top:5px;text-transform:uppercase">Historic &middot; Est. 1902 &middot; Collingdale, PA</span>
       </div>
-      <nav style="display:flex;align-items:center;gap:34px">
+      <nav style="display:flex;align-items:center;gap:12px clamp(14px,2.5vw,34px);flex-wrap:wrap">
         <span onClick="{{ goHome }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navHomeC }}" style-hover="color:#EFC94C">Home</span>
         <span onClick="{{ goHistory }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navHistoryC }}" style-hover="color:#EFC94C">History</span>
         <span onClick="{{ goNotables }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navNotablesC }}" style-hover="color:#EFC94C">Notable Residents</span>
@@ -45,21 +45,22 @@
   <main data-screen-label="Home">
 
     <!-- Video hero banner -->
-    <section style="position:relative;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;background:{{ dark }}">
+    <section style="position:relative;min-height:clamp(420px,90vw,640px);display:flex;align-items:flex-end;overflow:hidden;background:{{ dark }}">
       <img src="assets/hero-aerial.png" alt="Aerial drone view of Eden Cemetery grounds" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+      <video src="assets/hero-video.mp4" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onCanPlay="{{ heroVideoReady }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ heroVideoOpacity }};transition:opacity 0.9s"></video>
       <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(38,38,30,0.85) 0%, rgba(38,38,30,0.35) 45%, rgba(38,38,30,0.15) 100%)"></div>
-      <div style="position:absolute;top:40px;right:44px;display:flex;align-items:center;gap:14px">
+      <div style="position:absolute;top:24px;right:clamp(16px,3vw,44px);display:{{ droneNoteDisplay }};align-items:center;gap:14px">
         <span style="font-family:monospace;font-size:11.5px;letter-spacing:0.08em;color:rgba(246,244,234,0.85);background:rgba(38,38,30,0.55);padding:8px 14px;backdrop-filter:blur(4px)">DRONE VIDEO PLAYS HERE &mdash; muted, looping</span>
         <div style="width:56px;height:56px;border-radius:50%;border:2px solid rgba(246,244,234,0.9);display:flex;align-items:center;justify-content:center;background:rgba(38,38,30,0.35);cursor:pointer;backdrop-filter:blur(4px)" style-hover="background:rgba(201,162,39,0.8)">
           <span style="width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:15px solid #F6F4EA;margin-left:4px"></span>
         </div>
       </div>
-      <div style="position:relative;max-width:1280px;margin:0 auto;width:100%;padding:0 40px 72px;display:flex;flex-direction:column;gap:24px">
+      <div style="position:relative;max-width:1280px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,40px) 56px;display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;align-items:center;gap:14px">
           <span style="width:36px;height:2px;background:{{ gold }}"></span>
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }};font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,0.4)">Sacred Black Space Since 1902</span>
         </div>
-        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:60px;line-height:1.06;margin:0;color:#FCFAF2;max-width:22ch;text-wrap:balance;text-shadow:0 2px 20px rgba(0,0,0,0.45)">Come sit with your ancestors.</h1>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(36px,7.5vw,60px);line-height:1.06;margin:0;color:#FCFAF2;max-width:22ch;text-wrap:balance;text-shadow:0 2px 20px rgba(0,0,0,0.45)">Come sit with your ancestors.</h1>
         <p style="font-size:17px;line-height:1.7;color:rgba(252,250,242,0.92);margin:0;max-width:64ch;text-shadow:0 1px 12px rgba(0,0,0,0.5)">What if you could sit in the same space as Marian Anderson, Frances Watkins Harper, and William Still? Eden Cemetery is time travel &mdash; the past in the present. It is where 93,000 stories of ordinary people who did extraordinary things are waiting to be heard. Eden won&rsquo;t let you forget.</p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">
           <span onClick="{{ goNotables }}" style="cursor:pointer;background:{{ gold }};color:#33301F;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px" style-hover="background:#EFC94C">Meet the Notables</span>
@@ -70,23 +71,23 @@
 
     <!-- Stats band -->
     <section style="background:{{ darker }};border-top:1px solid {{ dline }};border-bottom:1px solid {{ dline }}">
-      <div style="max-width:1280px;margin:0 auto;padding:44px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px">
-        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:44px;font-weight:600;color:{{ gold }}">1902</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Founded by Black Philadelphians &mdash; for you, by you</span></div>
-        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:44px;font-weight:600;color:{{ gold }}">93,000</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Souls entrusted to Eden&rsquo;s care</span></div>
-        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:44px;font-weight:600;color:{{ gold }}">53</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Acres of Black-owned, Black-controlled sacred ground</span></div>
-        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:44px;font-weight:600;color:{{ gold }}">2</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">National designations: Register of Historic Places &amp; Underground Railroad Network to Freedom</span></div>
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(28px,5vw,44px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gStats }};gap:clamp(24px,4vw,40px)">
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,5.5vw,44px);font-weight:600;color:{{ gold }}">1902</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Founded by Black Philadelphians &mdash; for you, by you</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,5.5vw,44px);font-weight:600;color:{{ gold }}">93,000</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Souls entrusted to Eden&rsquo;s care</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,5.5vw,44px);font-weight:600;color:{{ gold }}">53</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">Acres of Black-owned, Black-controlled sacred ground</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(28px,5.5vw,44px);font-weight:600;color:{{ gold }}">2</span><span style="font-size:13px;line-height:1.55;letter-spacing:0.04em;color:{{ dmute }}">National designations: Register of Historic Places &amp; Underground Railroad Network to Freedom</span></div>
       </div>
     </section>
 
     <!-- Why Eden -->
     <section style="background:#F5F4F0">
-      <div style="max-width:1280px;margin:0 auto;padding:104px 40px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,10vw,104px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gWhy }};gap:clamp(32px,6vw,80px);align-items:start">
         <div style="position:relative;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border:1px solid #DDDAD0">
           <img src="assets/nr-plaque.png" alt="National Register of Historic Places plaque" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(20,18,14,0.88) 0%, rgba(20,18,14,0.45) 55%, rgba(20,18,14,0.2) 100%)"></div>
           <div style="position:relative;display:flex;flex-direction:column;gap:16px;padding:36px 34px 38px">
             <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Why Eden Matters</span>
-            <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:500;font-size:38px;line-height:1.2;margin:0;text-wrap:balance;color:#FCFAF2;text-shadow:0 2px 16px rgba(0,0,0,0.5)">&ldquo;You cannot do Black Philly history without Eden Cemetery.&rdquo;</p>
+            <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:500;font-size:clamp(26px,5vw,38px);line-height:1.2;margin:0;text-wrap:balance;color:#FCFAF2;text-shadow:0 2px 16px rgba(0,0,0,0.5)">&ldquo;You cannot do Black Philly history without Eden Cemetery.&rdquo;</p>
             <span style="font-size:13px;letter-spacing:0.1em;color:rgba(252,250,242,0.75);text-transform:uppercase">&mdash; Community workshop, 2026</span>
             <div style="height:1px;background:rgba(252,250,242,0.25)"></div>
             <span style="font-size:13px;line-height:1.7;color:rgba(252,250,242,0.9)">Listed on the <strong style="color:{{ gold }}">National Register of Historic Places</strong> and a National Underground Railroad Network to Freedom site.</span>
@@ -106,15 +107,15 @@
 
     <!-- Notables preview -->
     <section style="background:#EBE9E2;border-top:1px solid #DDDAD0">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,40px)">
         <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px">
           <div style="display:flex;flex-direction:column;gap:14px">
             <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#8A6D12">Notable Residents</span>
-            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:46px;margin:0;line-height:1.1">From the ordinary to the extraordinary.</h2>
+            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(30px,6vw,46px);margin:0;line-height:1.1">From the ordinary to the extraordinary.</h2>
           </div>
           <span onClick="{{ goNotables }}" style="cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A6D12;border-bottom:2px solid {{ gold }};padding-bottom:6px;white-space:nowrap" style-hover="color:#D9A821">All Notable Residents &rarr;</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+        <div style="display:grid;grid-template-columns:{{ gCards }};gap:28px">
           <sc-for list="{{ homeNotables }}" as="n" hint-placeholder-count="3">
             <div onClick="{{ goNotables }}" style="cursor:pointer;background:#FFFFFF;border:1px solid #DDDAD0;display:flex;flex-direction:column" style-hover="border-color:#D9A821">
               <div style="height:300px;background:{{ dark }};position:relative;overflow:hidden">
@@ -123,7 +124,7 @@
               </div>
               <div style="padding:26px 26px 30px;display:flex;flex-direction:column;gap:10px">
                 <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#8A6D12">{{ n.tag }}</span>
-                <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:28px;line-height:1.1">{{ n.name }}</span>
+                <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(22px,4vw,28px);line-height:1.1">{{ n.name }}</span>
                 <span style="font-size:14.5px;line-height:1.65;color:#6E6759">{{ n.blurb }}</span>
               </div>
             </div>
@@ -134,10 +135,10 @@
 
     <!-- Visit band -->
     <section style="background:{{ dark }};color:#F6F4EA">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gHalf }};gap:clamp(32px,5vw,72px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:20px">
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Plan Your Visit</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:46px;margin:0;line-height:1.12">Our gates are open daily, 8:00am&ndash;4:30pm.</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(30px,6vw,46px);margin:0;line-height:1.12">Our gates are open daily, 8:00am&ndash;4:30pm.</h2>
           <p style="font-size:16px;line-height:1.75;color:{{ dmute }};margin:0">Walk the grounds on a self-guided tour, join a docent-led walk, or use our interactive map to find the resting places of the people who built Black America.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:{{ dline }};border:1px solid {{ dline }};margin-top:8px">
             <div style="background:{{ darker }};padding:24px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:{{ dsub }}">Address</span><span style="font-size:15px;line-height:1.6">1434 Springfield Road<br>Collingdale, PA 19023</span></div>
@@ -158,10 +159,10 @@
 
     <!-- Friends callout -->
     <section style="background:{{ gold }}">
-      <div style="max-width:1280px;margin:0 auto;padding:72px 40px;display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#33301F;opacity:0.7">Friends of Eden</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:40px;margin:0;line-height:1.15;color:#33301F">Black spaces need support now more than ever.</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5vw,40px);margin:0;line-height:1.15;color:#33301F">Black spaces need support now more than ever.</h2>
           <p style="font-size:16px;line-height:1.65;color:#33301F;opacity:0.85;margin:0">Eden is how we transport the past to our future. Join the Friends of Eden and help preserve 124 years of refusing to let Black history be buried twice.</p>
         </div>
         <span onClick="{{ goFriends }}" style="cursor:pointer;background:{{ dark }};color:#F6F4EA;font-weight:600;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:18px 34px;white-space:nowrap" style-hover="color:#EFC94C">Become a Friend</span>
@@ -176,13 +177,13 @@
   <main data-screen-label="History">
 
     <section style="background:{{ dark }};color:#F6F4EA">
-      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:64px;align-items:center">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(48px,8vw,80px) clamp(20px,5vw,40px) clamp(40px,6vw,64px);display:grid;grid-template-columns:{{ gHist }};gap:clamp(32px,5vw,64px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:24px">
           <div style="display:flex;align-items:center;gap:14px">
             <span style="width:36px;height:1px;background:{{ gold }}"></span>
             <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Our Story &middot; Beginnings</span>
           </div>
-          <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:54px;margin:0;line-height:1.08;text-wrap:balance">Founded so that death would not be another site of dispossession.</h1>
+          <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(32px,7vw,54px);margin:0;line-height:1.08;text-wrap:balance">Founded so that death would not be another site of dispossession.</h1>
           <p style="font-size:17px;line-height:1.75;color:{{ dmute }};margin:0;max-width:64ch">The creation of the Eden Cemetery Company was a collaborative act of African American agency: a sanctuary where Black Philadelphians could be buried with dignity and respect, founded by Jacob C. White Sr. and managed by his son, Jacob C. White Jr., at the height of Jim Crow &mdash; six years after Plessy v. Ferguson &mdash; in answer to a burial crisis created by segregation, urban expansion, condemnation, and the closure of the community&rsquo;s earlier burial grounds.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
@@ -196,12 +197,12 @@
 
     <!-- Timeline -->
     <section style="background:#F5F4F0;border-bottom:1px solid #DDDAD0">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
-        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:44px;margin:0 0 56px;line-height:1.1">Over 200 years in the making</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,40px)">
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5.5vw,44px);margin:0 0 56px;line-height:1.1">Over 200 years in the making</h2>
+        <div style="display:grid;grid-template-columns:{{ gCards }};gap:40px 32px">
           <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="6">
             <div style="display:flex;flex-direction:column;gap:12px;border-top:2px solid {{ gold }};padding-top:20px">
-              <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:600;color:#8A6D12">{{ t.year }}</span>
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(23px,4vw,30px);font-weight:600;color:#8A6D12">{{ t.year }}</span>
               <span style="font-size:15px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#1B1712">{{ t.title }}</span>
               <span style="font-size:14.5px;line-height:1.7;color:#6E6759">{{ t.text }}</span>
             </div>
@@ -212,7 +213,7 @@
 
     <!-- Lebanon & Olive / reinterment -->
     <section style="background:#EBE9E2;border-bottom:1px solid #DDDAD0">
-      <div style="max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,9vw,96px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gHalf }};gap:clamp(32px,5vw,72px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="border:1px solid #DDDAD0;background:#FFFFFF;padding:12px">
             <img src="assets/lebanon-chapel.png" alt="Lithograph of the Chapel of the Lebanon Cemetery" style="width:100%;height:420px;object-fit:cover;display:block">
@@ -221,7 +222,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:18px">
           <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#8A6D12">The Collection Cemetery</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:44px;margin:0;line-height:1.1">Lebanon. Olive. Eden held them all.</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5.5vw,44px);margin:0;line-height:1.1">Lebanon. Olive. Eden held them all.</h2>
           <p style="font-size:16.5px;line-height:1.8;color:#4A4438;margin:0">The great Black burial grounds of Philadelphia &mdash; home to some of the most important Black Americans in history &mdash; were forced to close. Other cemeteries were not forced to move. Only theirs. Even in death, the mistreatment continued.</p>
           <p style="font-size:16.5px;line-height:1.8;color:#4A4438;margin:0">But Eden held them. Their residents were reinterred on Eden&rsquo;s grounds, where the cemetery&rsquo;s sections became declarations of pride &mdash; like the John Brown section, the chosen resting place of United States Colored Troops and of Frances Ellen Watkins Harper, who counted Brown a friend and hero.</p>
           <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:20px;line-height:1.5;color:#8A6D12;margin:0">What looks like a cemetery is actually an act of resistance &mdash; 124 years of refusing to let Black history be buried twice.</p>
@@ -231,11 +232,11 @@
 
     <!-- History CTA -->
     <section style="background:#F5F4F0">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px">
-        <div style="background:{{ dark }};padding:56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px)">
+        <div style="background:{{ dark }};padding:clamp(32px,6vw,56px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
           <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
             <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Hear the Stories</span>
-            <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:32px;font-weight:600;line-height:1.25;color:#F6F4EA;margin:0">The lives at Eden span from 1721 to the present. Walk among them.</p>
+            <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(24px,4.5vw,32px);font-weight:600;line-height:1.25;color:#F6F4EA;margin:0">The lives at Eden span from 1721 to the present. Walk among them.</p>
           </div>
           <div style="display:flex;gap:16px;flex-wrap:wrap">
             <span onClick="{{ goNotables }}" style="cursor:pointer;background:{{ gold }};color:#33301F;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px" style-hover="background:#EFC94C">Notable Residents</span>
@@ -253,12 +254,12 @@
   <main data-screen-label="Notable Residents">
 
     <section style="background:{{ dark }};color:#F6F4EA">
-      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(48px,8vw,80px) clamp(20px,5vw,40px) clamp(40px,6vw,64px);display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;align-items:center;gap:14px">
           <span style="width:36px;height:1px;background:{{ gold }}"></span>
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">From the Ordinary to the Extraordinary</span>
         </div>
-        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:58px;margin:0;line-height:1.08">Notable Residents</h1>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(34px,7vw,58px);margin:0;line-height:1.08">Notable Residents</h1>
         <p style="font-size:17px;line-height:1.75;color:{{ dmute }};margin:0;max-width:70ch">Visitors come to Eden every year searching for the final resting places of the people who built Black America &mdash; abolitionists, ministers, physicians, poets, architects, and musicians. Ninety-three thousand stories are waiting to be heard. These are a few of them.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
           <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
@@ -270,7 +271,7 @@
 
     <!-- Featured: Marian Anderson -->
     <section style="background:#F5F4F0;border-bottom:1px solid #DDDAD0">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gHalf }};gap:clamp(32px,5vw,72px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="height:460px;border:1px solid #DDDAD0;background:#FFFFFF;padding:12px">
             <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="anderson-grave" shape="rect" placeholder="Marian Anderson grave photo" hint-size="100%,434px"></x-import>
@@ -279,7 +280,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:18px">
           <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#8A6D12">Musicians &amp; Performers</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:52px;margin:0;line-height:1.05">Marian Anderson</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(32px,6.5vw,52px);margin:0;line-height:1.05">Marian Anderson</h2>
           <div style="display:flex;align-items:center;gap:16px">
             <img src="assets/marian-anderson.jpg" alt="Portrait of Marian Anderson" style="width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid {{ gold }};flex:none">
             <span style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:22px;color:#6E6759">1897 &ndash; 1993</span>
@@ -293,10 +294,10 @@
 
     <!-- Featured: Octavius Catto -->
     <section style="background:#EBE9E2;border-bottom:1px solid #DDDAD0">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gHalf }};gap:clamp(32px,5vw,72px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:18px;order:1">
           <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#8A6D12">Civic Leaders &middot; The Forgotten Hero</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:52px;margin:0;line-height:1.05">Octavius V. Catto</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(32px,6.5vw,52px);margin:0;line-height:1.05">Octavius V. Catto</h2>
           <div style="display:flex;align-items:center;gap:16px">
             <img src="assets/octavius-catto.jpg" alt="Portrait of Octavius Catto" style="width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid {{ gold }};flex:none">
             <span style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:22px;color:#6E6759">1839 &ndash; 1871</span>
@@ -316,9 +317,9 @@
 
     <!-- Grid of more notables -->
     <section style="background:#F5F4F0">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px">
-        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:40px;margin:0 0 48px;line-height:1.1">More voices of the founding generation</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px)">
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5vw,40px);margin:0 0 48px;line-height:1.1">More voices of the founding generation</h2>
+        <div style="display:grid;grid-template-columns:{{ gCards }};gap:28px">
           <sc-for list="{{ moreNotables }}" as="n" hint-placeholder-count="3">
             <div style="background:#FFFFFF;border:1px solid #DDDAD0;display:flex;flex-direction:column">
               <div style="height:260px;padding:10px">
@@ -333,8 +334,8 @@
             </div>
           </sc-for>
         </div>
-        <div style="margin-top:56px;background:{{ dark }};padding:48px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
-          <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:28px;line-height:1.35;color:#F6F4EA;margin:0;max-width:56ch">&ldquo;What looks like a cemetery is actually an act of resistance &mdash; 124 years of refusing to let Black history be buried twice.&rdquo;</p>
+        <div style="margin-top:56px;background:{{ dark }};padding:clamp(28px,5vw,48px);display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+          <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:clamp(22px,4vw,28px);line-height:1.35;color:#F6F4EA;margin:0;max-width:56ch">&ldquo;What looks like a cemetery is actually an act of resistance &mdash; 124 years of refusing to let Black history be buried twice.&rdquo;</p>
           <span onClick="{{ goMap }}" style="cursor:pointer;background:{{ gold }};color:#33301F;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px;white-space:nowrap" style-hover="background:#EFC94C">Walk the Grounds</span>
         </div>
       </div>
@@ -348,21 +349,21 @@
   <main data-screen-label="Map and Tours">
 
     <section style="background:{{ dark }};color:#F6F4EA">
-      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(48px,8vw,80px) clamp(20px,5vw,40px) clamp(40px,6vw,64px);display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;align-items:center;gap:14px">
           <span style="width:36px;height:1px;background:{{ gold }}"></span>
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Time Travel &mdash; The Past in the Present</span>
         </div>
-        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:58px;margin:0;line-height:1.08">Grounds Map &amp; Tours</h1>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(34px,7vw,58px);margin:0;line-height:1.08">Grounds Map &amp; Tours</h1>
         <p style="font-size:17px;line-height:1.75;color:{{ dmute }};margin:0;max-width:70ch">Use the interactive map to navigate Eden&rsquo;s 53 acres, locate historic sections &mdash; including the reinterred grounds of Lebanon and Olive Cemeteries &mdash; and find the resting places of notable residents.</p>
       </div>
     </section>
 
     <section style="background:#F5F4F0">
-      <div style="max-width:1280px;margin:0 auto;padding:72px 40px;display:grid;grid-template-columns:2.2fr 1fr;gap:40px;align-items:start">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gMap }};gap:40px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="border:1px solid #DDDAD0;background:#FFFFFF;padding:12px">
-            <iframe src="https://www.google.com/maps/d/embed?mid=12uyOMgQR4X2p5-oVMW7jLZDyiVFqb5A" style="width:100%;height:640px;border:0;display:block" title="Eden Cemetery interactive grounds map"></iframe>
+            <iframe src="https://www.google.com/maps/d/embed?mid=12uyOMgQR4X2p5-oVMW7jLZDyiVFqb5A" style="width:100%;height:clamp(420px,90vw,640px);border:0;display:block" title="Eden Cemetery interactive grounds map"></iframe>
           </div>
           <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6E6759">Draft interactive map &mdash; tap a marker to see the section and who rests there.</span>
         </div>
@@ -401,24 +402,24 @@
   <main data-screen-label="Friends of Eden">
 
     <section style="background:{{ dark }};color:#F6F4EA">
-      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(48px,8vw,80px) clamp(20px,5vw,40px) clamp(40px,6vw,64px);display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;align-items:center;gap:14px">
           <span style="width:36px;height:1px;background:{{ gold }}"></span>
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Stewardship &amp; Service</span>
         </div>
-        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:58px;margin:0;line-height:1.08">Friends of Eden</h1>
+        <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(34px,7vw,58px);margin:0;line-height:1.08">Friends of Eden</h1>
         <p style="font-size:17px;line-height:1.75;color:{{ dmute }};margin:0;max-width:70ch">We need Eden not just because of what happened in the past &mdash; but because of what is happening right now. The Friends of Eden fund preservation, education, and access, so the stories this ground holds can teach future generations.</p>
         <span style="cursor:pointer;align-self:flex-start;background:{{ gold }};color:#33301F;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px;margin-top:6px" style-hover="background:#EFC94C">Join or Give Today</span>
       </div>
     </section>
 
     <section style="background:#F5F4F0">
-      <div style="max-width:1280px;margin:0 auto;padding:88px 40px">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(52px,8vw,88px) clamp(20px,5vw,40px)">
         <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:52px">
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#8A6D12">What Your Support Made Possible</span>
-          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:44px;margin:0;line-height:1.1">Recent accomplishments</h2>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5.5vw,44px);margin:0;line-height:1.1">Recent accomplishments</h2>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+        <div style="display:grid;grid-template-columns:{{ gCards }};gap:28px">
           <sc-for list="{{ accomplishments }}" as="a" hint-placeholder-count="3">
             <div style="background:#FFFFFF;border:1px solid #DDDAD0;display:flex;flex-direction:column">
               <div style="height:220px;padding:10px">
@@ -433,24 +434,24 @@
           </sc-for>
         </div>
 
-        <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+        <div style="margin-top:64px;display:grid;grid-template-columns:{{ gCards }};gap:28px">
           <div style="border:1px solid #DDDAD0;padding:34px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:600;color:#8A6D12">Preserve</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(23px,4vw,30px);font-weight:600;color:#8A6D12">Preserve</span>
             <span style="font-size:14.5px;line-height:1.7;color:#6E6759">Monument conservation, grounds care, and restoration of the historic sections reinterred from Lebanon and Olive Cemeteries.</span>
           </div>
           <div style="border:1px solid #DDDAD0;padding:34px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:600;color:#8A6D12">Educate</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(23px,4vw,30px);font-weight:600;color:#8A6D12">Educate</span>
             <span style="font-size:14.5px;line-height:1.7;color:#6E6759">School programs, research support, and public tours that connect visitors with 93,000 stories of ordinary people who did extraordinary things.</span>
           </div>
           <div style="border:1px solid #DDDAD0;padding:34px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF">
-            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:600;color:#8A6D12">Sustain</span>
+            <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(23px,4vw,30px);font-weight:600;color:#8A6D12">Sustain</span>
             <span style="font-size:14.5px;line-height:1.7;color:#6E6759">An endowment for the next century of stewardship &mdash; so Eden can keep preserving memory and cultural continuity.</span>
           </div>
         </div>
 
-        <div style="margin-top:56px;background:{{ dark }};padding:56px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+        <div style="margin-top:56px;background:{{ dark }};padding:clamp(32px,6vw,56px);display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
           <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">That&rsquo;s Ours. It Has Been Ours From the Beginning.</span>
-          <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:34px;font-weight:600;line-height:1.3;color:#F6F4EA;margin:0;max-width:30ch">Help Eden survive &mdash; so the stories it holds can teach us ways to improve our now.</p>
+          <p style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(25px,4.5vw,34px);font-weight:600;line-height:1.3;color:#F6F4EA;margin:0;max-width:30ch">Help Eden survive &mdash; so the stories it holds can teach us ways to improve our now.</p>
           <span style="cursor:pointer;background:{{ gold }};color:#33301F;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 34px;margin-top:8px" style-hover="background:#EFC94C">Become a Friend of Eden</span>
         </div>
       </div>
@@ -461,7 +462,7 @@
 
   <!-- ============ FOOTER (shared) ============ -->
   <footer style="background:{{ darker }};color:{{ dmute }};border-top:1px solid {{ dline }}">
-    <div style="max-width:1280px;margin:0 auto;padding:72px 40px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,5vw,40px) 40px;display:grid;grid-template-columns:{{ gFoot }};gap:40px 48px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:26px;letter-spacing:0.04em;color:#F6F4EA">EDEN <span style="color:{{ gold }}">CEMETERY</span></span>
         <span style="font-size:14px;line-height:1.8">1434 Springfield Road<br>Collingdale, Pennsylvania 19023<br>610&#8209;583&#8209;8737</span>
@@ -489,7 +490,7 @@
         <span style="font-size:14px;cursor:pointer" style-hover="color:#EFC94C">Contact Us</span>
       </div>
     </div>
-    <div style="max-width:1280px;margin:0 auto;padding:24px 40px 36px;display:flex;justify-content:space-between;gap:24px;border-top:1px solid {{ dline }};font-size:12px;color:{{ dsub }};flex-wrap:wrap">
+    <div style="max-width:1280px;margin:0 auto;padding:24px clamp(20px,5vw,40px) 36px;display:flex;justify-content:space-between;gap:24px;border-top:1px solid {{ dline }};font-size:12px;color:{{ dsub }};flex-wrap:wrap">
       <span>&copy; 2026 Eden Cemetery Company. Preserving memory and cultural continuity since 1902.</span>
       <span style="font-style:italic;font-family:'Bricolage Grotesque',sans-serif;font-size:15px">&ldquo;History ignored is history repeated.&rdquo;</span>
     </div>
@@ -503,7 +504,18 @@
   &quot;gold&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;options&quot;: [&quot;#EFC94C&quot;, &quot;#D9A821&quot;, &quot;#B5891A&quot;], &quot;default&quot;: &quot;#EFC94C&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Brand&quot;}
 }">
 class Component extends DCLogic {
-  state = { page: 'home' };
+  state = { page: 'home', mob: false, videoOn: false };
+
+  componentDidMount() {
+    this._mq = window.matchMedia('(max-width: 860px)');
+    this._onMq = () => this.setState({ mob: this._mq.matches });
+    this._mq.addEventListener('change', this._onMq);
+    if (this._mq.matches) this.setState({ mob: true });
+  }
+
+  componentWillUnmount() {
+    if (this._mq) this._mq.removeEventListener('change', this._onMq);
+  }
 
   go(page) {
     this.setState({ page });
@@ -524,6 +536,7 @@ class Component extends DCLogic {
     const s = shades[charcoal] || shades['#686858'];
 
     const navC = (p) => (page === p ? gold : '#EDEBDD');
+    const mob = this.state.mob;
 
     return {
       isHome: page === 'home',
@@ -548,6 +561,17 @@ class Component extends DCLogic {
       dline: s.line,
       dmute: s.mute,
       dsub: s.sub,
+
+      gStats: mob ? '1fr 1fr' : 'repeat(4,1fr)',
+      gWhy: mob ? '1fr' : '0.9fr 1.1fr',
+      gCards: mob ? '1fr' : 'repeat(3,1fr)',
+      gHalf: mob ? '1fr' : '1fr 1fr',
+      gHist: mob ? '1fr' : '1.2fr 0.8fr',
+      gMap: mob ? '1fr' : '2.2fr 1fr',
+      gFoot: mob ? '1fr' : '1.4fr 1fr 1fr 1fr',
+      heroVideoOpacity: this.state.videoOn ? 1 : 0,
+      droneNoteDisplay: this.state.videoOn ? 'none' : 'flex',
+      heroVideoReady: () => this.setState({ videoOn: true }),
 
       timeline: [
         { year: '1790s', title: 'Building toward Eden',
