@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Archivo:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#12100D;}
+  body{font-family:'Archivo',sans-serif;}
+  a{color:#A88A22;text-decoration:none;}
+  a:hover{color:#C9A227;}
+  *{box-sizing:border-box;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:{{ paper }};color:{{ ink }};font-family:'Archivo',sans-serif">
+
+  <!-- ============ HEADER (shared) ============ -->
+  <header style="background:#12100D;border-bottom:1px solid #2A251D;position:sticky;top:0;z-index:50">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:88px;gap:32px">
+      <div onClick="{{ goHome }}" style="display:flex;flex-direction:column;cursor:pointer;line-height:1">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;letter-spacing:0.04em;color:#F3EDDF">EDEN <span style="color:{{ gold }}">CEMETERY</span></span>
+        <span style="font-size:10.5px;letter-spacing:0.32em;color:#8D8371;margin-top:5px;text-transform:uppercase">Historic &middot; Est. 1902 &middot; Collingdale, PA</span>
+      </div>
+      <nav style="display:flex;align-items:center;gap:34px">
+        <span onClick="{{ goHome }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navHomeC }}" style-hover="color:#C9A227">Home</span>
+        <span onClick="{{ goNotables }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navNotablesC }}" style-hover="color:#C9A227">Notable Residents</span>
+        <span onClick="{{ goMap }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navMapC }}" style-hover="color:#C9A227">Map &amp; Tours</span>
+        <span onClick="{{ goFriends }}" style="cursor:pointer;font-size:14px;font-weight:500;letter-spacing:0.06em;color:{{ navFriendsC }}" style-hover="color:#C9A227">Friends of Eden</span>
+        <span onClick="{{ goMap }}" style="cursor:pointer;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#12100D;background:{{ gold }};padding:12px 22px" style-hover="background:#E3C567">Plan a Visit</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Home">
+
+    <!-- Hero -->
+    <section style="background:#12100D;color:#F3EDDF;position:relative;overflow:hidden">
+      <div style="max-width:1280px;margin:0 auto;padding:96px 40px 88px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:72px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:28px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="width:36px;height:1px;background:{{ gold }}"></span>
+            <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Sacred Black Space Since 1902</span>
+          </div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:64px;line-height:1.06;margin:0;text-wrap:balance">The accumulated memory of Black America&rsquo;s most audacious act of self&#8209;determination.</h1>
+          <p style="font-size:17px;line-height:1.7;color:#B9AF9C;margin:0;max-width:56ch">Established in 1902 by Black founders who refused to accept that death would be another site of dispossession, Eden holds the complete record of Black Philadelphia&rsquo;s founding generation &mdash; 93,000 ordinary people who did extraordinary things, resting on 53 sacred acres.</p>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px">
+            <span onClick="{{ goNotables }}" style="cursor:pointer;background:{{ gold }};color:#12100D;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px" style-hover="background:#E3C567">Meet the Notables</span>
+            <span onClick="{{ goMap }}" style="cursor:pointer;border:1px solid #4A4234;color:#F3EDDF;font-weight:500;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px" style-hover="border-color:#C9A227;color:#C9A227">Explore the Grounds Map</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="height:440px;border:1px solid #3A332A;padding:12px">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-photo" shape="rect" placeholder="Eden entrance gate photo" hint-size="100%,414px"></x-import>
+          </div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E6555;text-align:right">1434 Springfield Road &middot; Collingdale, Pennsylvania</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats band -->
+    <section style="background:#0C0A08;border-top:1px solid #2A251D;border-bottom:1px solid #2A251D">
+      <div style="max-width:1280px;margin:0 auto;padding:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px">
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:{{ gold }}">1902</span><span style="font-size:13px;letter-spacing:0.08em;color:#9A9080">Founded by Black Philadelphians &mdash; for you, by you</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:{{ gold }}">93,000</span><span style="font-size:13px;letter-spacing:0.08em;color:#9A9080">Souls entrusted to Eden&rsquo;s care</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:{{ gold }}">53</span><span style="font-size:13px;letter-spacing:0.08em;color:#9A9080">Acres of Black-owned, Black-controlled sacred ground</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:{{ gold }}">2</span><span style="font-size:13px;letter-spacing:0.08em;color:#9A9080">National designations: Register of Historic Places &amp; Underground Railroad Network to Freedom</span></div>
+      </div>
+    </section>
+
+    <!-- Why Eden -->
+    <section style="background:{{ paper }}">
+      <div style="max-width:1280px;margin:0 auto;padding:104px 40px;display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:20px;position:sticky;top:120px">
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ goldDeep }}">Why Eden Matters</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:42px;line-height:1.2;margin:0;text-wrap:balance">&ldquo;You cannot do Black Philly history without Eden Cemetery.&rdquo;</p>
+          <span style="font-size:13px;letter-spacing:0.1em;color:{{ sub }};text-transform:uppercase">&mdash; Community workshop, 2026</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:24px;font-size:17px;line-height:1.8;color:{{ body }}">
+          <p style="margin:0">Philadelphia was the civic laboratory of Black America &mdash; the city where Black people invented how to protest, how to claim rights, how to build institutions that could sustain a community under conditions of profound oppression. The people who did that are buried at Eden.</p>
+          <p style="margin:0">When Lebanon and Olive Cemeteries &mdash; home to Philadelphia&rsquo;s Black citizens &mdash; were forced to close, Eden absorbed them all. It now holds the abolitionists who operated the Underground Railroad in plain sight, the ministers who built the first Black churches, the poets who told America it could not be free while it held people in chains, the architects who designed the buildings of elite American institutions, and the musicians who carried the sorrow and joy of a people to the world&rsquo;s great stages.</p>
+          <p style="margin:0">When you walk Eden&rsquo;s 53 acres, you are not visiting a cemetery. You are time traveling through the foundation of Black American identity.</p>
+          <div style="display:flex;gap:28px;margin-top:8px;flex-wrap:wrap">
+            <span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:{{ goldDeep }};border-bottom:1px solid {{ gold }};padding-bottom:4px">History ignored is history repeated.</span>
+            <span style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:{{ goldDeep }};border-bottom:1px solid {{ gold }};padding-bottom:4px">Stories = History. Past = Now.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notables preview -->
+    <section style="background:{{ alt }};border-top:1px solid {{ line }}">
+      <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ goldDeep }}">Notable Residents</span>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:46px;margin:0;line-height:1.1">Come sit with your ancestors.</h2>
+          </div>
+          <span onClick="{{ goNotables }}" style="cursor:pointer;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:{{ goldDeep }};border-bottom:2px solid {{ gold }};padding-bottom:6px;white-space:nowrap" style-hover="color:#C9A227">All Notable Residents &rarr;</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+          <sc-for list="{{ homeNotables }}" as="n" hint-placeholder-count="3">
+            <div onClick="{{ goNotables }}" style="cursor:pointer;background:{{ card }};border:1px solid {{ line }};display:flex;flex-direction:column" style-hover="border-color:#C9A227">
+              <div style="height:240px;background:#12100D;display:flex;align-items:flex-end;padding:20px">
+                <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:#8D8371">{{ n.era }}</span>
+              </div>
+              <div style="padding:26px 26px 30px;display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:{{ goldDeep }}">{{ n.tag }}</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;line-height:1.1">{{ n.name }}</span>
+                <span style="font-size:14.5px;line-height:1.65;color:{{ sub }}">{{ n.blurb }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit band -->
+    <section style="background:#12100D;color:#F3EDDF">
+      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Plan Your Visit</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:46px;margin:0;line-height:1.12">Our gates are open daily, 8:00am&ndash;4:30pm.</h2>
+          <p style="font-size:16px;line-height:1.75;color:#B9AF9C;margin:0">Walk the grounds on a self-guided tour, join a docent-led walk, or use our interactive map to find the resting places of the people who built Black America.</p>
+          <div style="display:flex;gap:16px;margin-top:6px">
+            <span onClick="{{ goMap }}" style="cursor:pointer;background:{{ gold }};color:#12100D;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:15px 28px" style-hover="background:#E3C567">Open the Map</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2A251D;border:1px solid #2A251D">
+          <div style="background:#0C0A08;padding:28px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#8D8371">Address</span><span style="font-size:15px;line-height:1.6">1434 Springfield Road<br>Collingdale, PA 19023</span></div>
+          <div style="background:#0C0A08;padding:28px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#8D8371">Office</span><span style="font-size:15px;line-height:1.6">610&#8209;583&#8209;8737<br>Mon&ndash;Fri, 9:00&ndash;4:00</span></div>
+          <div style="background:#0C0A08;padding:28px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#8D8371">Grounds</span><span style="font-size:15px;line-height:1.6">Open every day<br>8:00am &ndash; 4:30pm</span></div>
+          <div style="background:#0C0A08;padding:28px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#8D8371">Tours</span><span style="font-size:15px;line-height:1.6">Group &amp; school tours<br>by appointment</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Friends callout -->
+    <section style="background:{{ gold }}">
+      <div style="max-width:1280px;margin:0 auto;padding:72px 40px;display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#12100D;opacity:0.7">Friends of Eden</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;margin:0;line-height:1.15;color:#12100D">Black spaces need support now more than ever.</h2>
+          <p style="font-size:16px;line-height:1.65;color:#12100D;opacity:0.85;margin:0">Eden is how we transport the past to our future. Join the Friends of Eden and help preserve 124 years of refusing to let Black history be buried twice.</p>
+        </div>
+        <span onClick="{{ goFriends }}" style="cursor:pointer;background:#12100D;color:#F3EDDF;font-weight:600;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:18px 34px;white-space:nowrap" style-hover="color:#C9A227">Become a Friend</span>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <!-- ============ NOTABLES ============ -->
+  <sc-if value="{{ isNotables }}" hint-placeholder-val="{{ false }}">
+  <main data-screen-label="Notable Residents">
+
+    <section style="background:#12100D;color:#F3EDDF">
+      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:36px;height:1px;background:{{ gold }}"></span>
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">From the Ordinary to the Extraordinary</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:58px;margin:0;line-height:1.08;max-width:18ch">Notable Residents</h1>
+        <p style="font-size:17px;line-height:1.75;color:#B9AF9C;margin:0;max-width:70ch">Visitors come to Eden every year searching for the final resting places of the people who built Black America &mdash; abolitionists, ministers, physicians, poets, architects, and musicians. Ninety-three thousand stories are waiting to be heard. These are a few of them.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
+          <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
+            <span style="font-size:12.5px;letter-spacing:0.08em;font-weight:500;color:#D8CFBE;border:1px solid #3A332A;padding:9px 18px;cursor:pointer" style-hover="border-color:#C9A227;color:#C9A227">{{ c }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured: Marian Anderson -->
+    <section style="background:{{ paper }};border-bottom:1px solid {{ line }}">
+      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="height:460px;border:1px solid {{ line }};background:{{ card }};padding:12px">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="anderson-grave" shape="rect" placeholder="Marian Anderson grave photo" hint-size="100%,434px"></x-import>
+          </div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:{{ sub }}">Her grave at Eden &middot; Section &amp; lot on the grounds map</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ goldDeep }}">Musicians &amp; Performers</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:52px;margin:0;line-height:1.05">Marian Anderson</h2>
+          <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:{{ sub }}">1897 &ndash; 1993</span>
+          <p style="font-size:16.5px;line-height:1.8;color:{{ body }};margin:0">One of the greatest voices of the twentieth century. When the Daughters of the American Revolution barred her from Constitution Hall in 1939, she sang instead from the steps of the Lincoln Memorial before 75,000 people &mdash; a moment that became a landmark of the civil rights movement. In 1955 she became the first African American to perform with the Metropolitan Opera.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.5;color:{{ goldDeep }};margin:0">She carried the sorrow and joy of a people to the world&rsquo;s great stages. She rests at Eden.</p>
+          <span onClick="{{ goMap }}" style="cursor:pointer;align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:{{ goldDeep }};border-bottom:2px solid {{ gold }};padding-bottom:5px" style-hover="color:#C9A227">Find her on the map &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured: Octavius Catto -->
+    <section style="background:{{ alt }};border-bottom:1px solid {{ line }}">
+      <div style="max-width:1280px;margin:0 auto;padding:88px 40px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:18px;order:1">
+          <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ goldDeep }}">Civic Leaders &middot; The Forgotten Hero</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:52px;margin:0;line-height:1.05">Octavius V. Catto</h2>
+          <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:{{ sub }}">1839 &ndash; 1871</span>
+          <p style="font-size:16.5px;line-height:1.8;color:{{ body }};margin:0">Scholar, educator, and the dominant civil rights leader of his generation. Catto led efforts to register thousands of African Americans to vote, desegregated Philadelphia&rsquo;s streetcars, and served as a major in the Pennsylvania National Guard. He was assassinated on Election Day, October 10, 1871, in front of a polling place on South Street &mdash; a martyr for the ballot, a century before Selma.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.5;color:{{ goldDeep }};margin:0">Reinterred from Lebanon Cemetery &mdash; Eden held him. Eden holds him still.</p>
+          <span onClick="{{ goMap }}" style="cursor:pointer;align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:{{ goldDeep }};border-bottom:2px solid {{ gold }};padding-bottom:5px" style-hover="color:#C9A227">Find him on the map &rarr;</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;order:2">
+          <div style="height:460px;border:1px solid {{ line }};background:{{ card }};padding:12px">
+            <img src="assets/catto-grave.jpg" alt="Octavius Catto headstone at Eden Cemetery" style="width:100%;height:100%;object-fit:cover;display:block">
+          </div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:{{ sub }}">His monument at Eden &middot; Lebanon Section, Lot 124</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid of more notables -->
+    <section style="background:{{ paper }}">
+      <div style="max-width:1280px;margin:0 auto;padding:88px 40px">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;margin:0 0 48px;line-height:1.1">More voices of the founding generation</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+          <sc-for list="{{ moreNotables }}" as="n" hint-placeholder-count="3">
+            <div style="background:{{ card }};border:1px solid {{ line }};display:flex;flex-direction:column">
+              <div style="height:260px;padding:10px">
+                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ n.slot }}" shape="rect" placeholder="{{ n.ph }}" hint-size="100%,240px"></x-import>
+              </div>
+              <div style="padding:22px 26px 30px;display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:{{ goldDeep }}">{{ n.tag }}</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;line-height:1.1">{{ n.name }}</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:{{ sub }}">{{ n.era }}</span>
+                <span style="font-size:14.5px;line-height:1.65;color:{{ sub }}">{{ n.blurb }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top:56px;background:#12100D;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap">
+          <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;line-height:1.35;color:#F3EDDF;margin:0;max-width:56ch">&ldquo;What looks like a cemetery is actually an act of resistance &mdash; 124 years of refusing to let Black history be buried twice.&rdquo;</p>
+          <span onClick="{{ goMap }}" style="cursor:pointer;background:{{ gold }};color:#12100D;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px;white-space:nowrap" style-hover="background:#E3C567">Walk the Grounds</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <!-- ============ MAP ============ -->
+  <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+  <main data-screen-label="Map and Tours">
+
+    <section style="background:#12100D;color:#F3EDDF">
+      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:36px;height:1px;background:{{ gold }}"></span>
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Time Travel &mdash; The Past in the Present</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:58px;margin:0;line-height:1.08">Grounds Map &amp; Tours</h1>
+        <p style="font-size:17px;line-height:1.75;color:#B9AF9C;margin:0;max-width:70ch">Use the interactive map to navigate Eden&rsquo;s 53 acres, locate historic sections &mdash; including the reinterred grounds of Lebanon and Olive Cemeteries &mdash; and find the resting places of notable residents.</p>
+      </div>
+    </section>
+
+    <section style="background:{{ paper }}">
+      <div style="max-width:1280px;margin:0 auto;padding:72px 40px;display:grid;grid-template-columns:2.2fr 1fr;gap:40px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="border:1px solid {{ line }};background:{{ card }};padding:12px">
+            <iframe src="https://www.google.com/maps/d/embed?mid=12uyOMgQR4X2p5-oVMW7jLZDyiVFqb5A" style="width:100%;height:640px;border:0;display:block" title="Eden Cemetery interactive grounds map"></iframe>
+          </div>
+          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:{{ sub }}">Draft interactive map &mdash; tap a marker to see the section and who rests there.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="background:{{ card }};border:1px solid {{ line }};padding:30px;display:flex;flex-direction:column;gap:16px">
+            <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ goldDeep }}">Visiting Hours</span>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600">Daily 8:00am &ndash; 4:30pm</span>
+              <span style="font-size:14px;line-height:1.6;color:{{ sub }}">Grounds open every day of the year. Office hours Mon&ndash;Fri.</span>
+            </div>
+            <div style="height:1px;background:{{ line }}"></div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ goldDeep }}">Getting Here</span>
+              <span style="font-size:14px;line-height:1.7;color:{{ body }}">1434 Springfield Road<br>Collingdale, PA 19023<br>610&#8209;583&#8209;8737</span>
+            </div>
+          </div>
+          <div style="background:#12100D;padding:30px;display:flex;flex-direction:column;gap:14px">
+            <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ gold }}">Guided Tours</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#F3EDDF;line-height:1.25">Hear the stories behind the stones.</span>
+            <span style="font-size:14px;line-height:1.7;color:#B9AF9C">Docent-led walking tours and golf-cart tours for groups, schools, and researchers &mdash; by appointment.</span>
+            <span style="cursor:pointer;align-self:flex-start;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:{{ gold }};border-bottom:2px solid {{ gold }};padding-bottom:5px" style-hover="color:#E3C567">Request a Tour &rarr;</span>
+          </div>
+          <div style="border:1px solid {{ line }};padding:24px 26px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ goldDeep }}">On the Map</span>
+            <span style="font-size:14px;line-height:1.8;color:{{ body }}">&bull;&nbsp; Historic sections &amp; reinterred grounds<br>&bull;&nbsp; Notable resident grave sites<br>&bull;&nbsp; Entrances, office &amp; accessible routes<br>&bull;&nbsp; Suggested self-guided walking route</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <!-- ============ FRIENDS ============ -->
+  <sc-if value="{{ isFriends }}" hint-placeholder-val="{{ false }}">
+  <main data-screen-label="Friends of Eden">
+
+    <section style="background:#12100D;color:#F3EDDF">
+      <div style="max-width:1280px;margin:0 auto;padding:80px 40px 64px;display:flex;flex-direction:column;gap:24px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span style="width:36px;height:1px;background:{{ gold }}"></span>
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">Stewardship &amp; Service</span>
+        </div>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:58px;margin:0;line-height:1.08">Friends of Eden</h1>
+        <p style="font-size:17px;line-height:1.75;color:#B9AF9C;margin:0;max-width:70ch">We need Eden not just because of what happened in the past &mdash; but because of what is happening right now. The Friends of Eden fund preservation, education, and access, so the stories this ground holds can teach future generations.</p>
+        <span style="cursor:pointer;align-self:flex-start;background:{{ gold }};color:#12100D;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 30px;margin-top:6px" style-hover="background:#E3C567">Join or Give Today</span>
+      </div>
+    </section>
+
+    <section style="background:{{ paper }}">
+      <div style="max-width:1280px;margin:0 auto;padding:88px 40px">
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:52px">
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ goldDeep }}">What Your Support Made Possible</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:44px;margin:0;line-height:1.1">Recent accomplishments</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+          <sc-for list="{{ accomplishments }}" as="a" hint-placeholder-count="3">
+            <div style="background:{{ card }};border:1px solid {{ line }};display:flex;flex-direction:column">
+              <div style="height:220px;padding:10px">
+                <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ a.slot }}" shape="rect" placeholder="{{ a.ph }}" hint-size="100%,200px"></x-import>
+              </div>
+              <div style="padding:22px 26px 30px;display:flex;flex-direction:column;gap:10px">
+                <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:{{ goldDeep }}">{{ a.when }}</span>
+                <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.15">{{ a.title }}</span>
+                <span style="font-size:14.5px;line-height:1.65;color:{{ sub }}">{{ a.blurb }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+          <div style="border:1px solid {{ line }};padding:34px;display:flex;flex-direction:column;gap:12px;background:{{ card }}">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:{{ goldDeep }}">Preserve</span>
+            <span style="font-size:14.5px;line-height:1.7;color:{{ sub }}">Monument conservation, grounds care, and restoration of the historic sections reinterred from Lebanon and Olive Cemeteries.</span>
+          </div>
+          <div style="border:1px solid {{ line }};padding:34px;display:flex;flex-direction:column;gap:12px;background:{{ card }}">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:{{ goldDeep }}">Educate</span>
+            <span style="font-size:14.5px;line-height:1.7;color:{{ sub }}">School programs, research support, and public tours that connect visitors with 93,000 stories of ordinary people who did extraordinary things.</span>
+          </div>
+          <div style="border:1px solid {{ line }};padding:34px;display:flex;flex-direction:column;gap:12px;background:{{ card }}">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:{{ goldDeep }}">Sustain</span>
+            <span style="font-size:14.5px;line-height:1.7;color:{{ sub }}">An endowment for the next century of stewardship &mdash; so Eden can keep preserving memory and cultural continuity.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:56px;background:#12100D;padding:56px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+          <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:{{ gold }}">That&rsquo;s Ours. It Has Been Ours From the Beginning.</span>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1.3;color:#F3EDDF;margin:0;max-width:30ch">Help Eden survive &mdash; so the stories it holds can teach us ways to improve our now.</p>
+          <span style="cursor:pointer;background:{{ gold }};color:#12100D;font-weight:600;font-size:14px;letter-spacing:0.08em;text-transform:uppercase;padding:16px 34px;margin-top:8px" style-hover="background:#E3C567">Become a Friend of Eden</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <!-- ============ FOOTER (shared) ============ -->
+  <footer style="background:#0C0A08;color:#9A9080;border-top:1px solid #2A251D">
+    <div style="max-width:1280px;margin:0 auto;padding:72px 40px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;letter-spacing:0.04em;color:#F3EDDF">EDEN <span style="color:{{ gold }}">CEMETERY</span></span>
+        <span style="font-size:14px;line-height:1.8">1434 Springfield Road<br>Collingdale, Pennsylvania 19023<br>610&#8209;583&#8209;8737</span>
+        <span style="font-size:12.5px;line-height:1.7;color:#6E6555">A National Underground Railroad Network to Freedom site, listed on the National Register of Historic Places. Member, ASALH &amp; Pennsylvania Hallowed Grounds.</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ gold }}">Our Story</span>
+        <span onClick="{{ goHome }}" style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Beginnings &middot; 1902</span>
+        <span onClick="{{ goNotables }}" style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Notable Residents</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Lebanon &amp; Olive Reinterments</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Eden Stories</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ gold }}">Visit</span>
+        <span onClick="{{ goMap }}" style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Grounds Map</span>
+        <span onClick="{{ goMap }}" style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Tours &amp; Events</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Plan a Visit</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Burial Records &amp; Research</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:{{ gold }}">Services &amp; Support</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Burial Options</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Memorials &amp; Headstones</span>
+        <span onClick="{{ goFriends }}" style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Friends of Eden</span>
+        <span style="font-size:14px;cursor:pointer" style-hover="color:#C9A227">Contact Us</span>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px 36px;display:flex;justify-content:space-between;gap:24px;border-top:1px solid #2A251D;padding-top:24px;font-size:12px;color:#6E6555;flex-wrap:wrap">
+      <span>&copy; 2026 Eden Cemetery Company. Preserving memory and cultural continuity since 1902.</span>
+      <span style="font-style:italic;font-family:'Cormorant Garamond',serif;font-size:15px;color:#8D8371">&ldquo;History ignored is history repeated.&rdquo;</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {&quot;width&quot;: 1440},
+  &quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Dark hero, light pages&quot;, &quot;All dark&quot;], &quot;default&quot;: &quot;Dark hero, light pages&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Visual weight&quot;},
+  &quot;gold&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;options&quot;: [&quot;#C9A227&quot;, &quot;#E3C567&quot;, &quot;#B08D2E&quot;], &quot;default&quot;: &quot;#C9A227&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Brand&quot;}
+}">
+class Component extends DCLogic {
+  state = { page: 'home' };
+
+  go(page) {
+    this.setState({ page });
+    window.scrollTo(0, 0);
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const theme = this.props.theme ?? 'Dark hero, light pages';
+    const dark = theme === 'All dark';
+    const gold = this.props.gold ?? '#C9A227';
+
+    const navC = (p) => (page === p ? gold : '#D8CFBE');
+
+    return {
+      isHome: page === 'home',
+      isNotables: page === 'notables',
+      isMap: page === 'map',
+      isFriends: page === 'friends',
+      goHome: () => this.go('home'),
+      goNotables: () => this.go('notables'),
+      goMap: () => this.go('map'),
+      goFriends: () => this.go('friends'),
+      navHomeC: navC('home'),
+      navNotablesC: navC('notables'),
+      navMapC: navC('map'),
+      navFriendsC: navC('friends'),
+
+      gold,
+      goldDeep: dark ? gold : '#8C6E14',
+      paper: dark ? '#161310' : '#F7F4EC',
+      alt: dark ? '#1B1712' : '#EFEADB',
+      card: dark ? '#211C16' : '#FFFFFF',
+      line: dark ? '#332D24' : '#E2DAC8',
+      ink: dark ? '#F1EAD9' : '#1B1712',
+      body: dark ? '#C9BFAA' : '#4A4438',
+      sub: dark ? '#9A9080' : '#6E6759',
+
+      homeNotables: [
+        { name: 'Marian Anderson', era: '1897 – 1993', tag: 'Musicians & Performers',
+          blurb: 'The contralto whose 1939 Lincoln Memorial concert became a landmark of the civil rights movement.' },
+        { name: 'Octavius V. Catto', era: '1839 – 1871', tag: 'Civic Leaders',
+          blurb: 'Educator and voting-rights martyr, assassinated on Election Day 1871 — a century before Selma.' },
+        { name: 'William Still', era: '1821 – 1902', tag: 'Abolitionists',
+          blurb: 'The Father of the Underground Railroad, who documented every freedom seeker he helped escape.' },
+      ],
+
+      categories: [
+        'Abolitionists & Freedom Fighters', 'Musicians & Performers', 'Civic Leaders',
+        'Clergy & Faith Builders', 'Writers & Poets', 'Medicine & Science',
+        'Architects & Builders', 'Military Service',
+      ],
+
+      moreNotables: [
+        { name: 'William Still', era: '1821 – 1902', tag: 'Abolitionists', slot: 'still-grave', ph: 'William Still grave photo',
+          blurb: 'The Father of the Underground Railroad. His meticulous records of the freedom seekers he helped became the foundation of African American genealogy.' },
+        { name: 'Frances E. W. Harper', era: '1825 – 1911', tag: 'Writers & Poets', slot: 'harper-grave', ph: 'Frances Harper grave photo',
+          blurb: 'Poet, abolitionist, and suffragist who told America it could not be free while it held people in chains.' },
+        { name: 'Julian Abele', era: '1881 – 1950', tag: 'Architects & Builders', slot: 'abele-grave', ph: 'Julian Abele grave photo',
+          blurb: 'The architect behind the Philadelphia Museum of Art and Duke University\u2019s campus — designing the buildings of elite American institutions.' },
+      ],
+
+      accomplishments: [
+        { when: 'Spring 2026', title: 'New tour fleet', slot: 'acc-carts', ph: 'Golf cart tours photo',
+          blurb: 'Friends funding purchased golf carts for guided tours, opening Eden\u2019s 53 acres to elders and visitors of all mobilities.' },
+        { when: 'Ongoing', title: 'Beautification project', slot: 'acc-beauty', ph: 'Beautification project photo',
+          blurb: 'Volunteer days and professional grounds care restoring plantings, pathways, and monuments across the historic sections.' },
+        { when: 'This year', title: 'The Governor\u2019s visit', slot: 'acc-governor', ph: 'Governor visit photo',
+          blurb: 'Pennsylvania\u2019s Governor walked Eden\u2019s grounds — statewide recognition of Eden\u2019s place in American history.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
