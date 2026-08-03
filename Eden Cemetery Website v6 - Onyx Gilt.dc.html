@@ -363,9 +363,9 @@
       <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,72px) clamp(20px,5vw,40px);display:grid;grid-template-columns:{{ gMap }};gap:40px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="border:1px solid #DDDAD0;background:#FFFFFF;padding:12px">
-            <iframe src="https://www.google.com/maps/d/embed?mid=12uyOMgQR4X2p5-oVMW7jLZDyiVFqb5A" style="width:100%;height:clamp(420px,90vw,640px);border:0;display:block" title="Eden Cemetery interactive grounds map"></iframe>
+            <iframe src="./eden-map.html" style="width:100%;height:clamp(480px,100vw,680px);border:0;display:block" title="Eden Cemetery interactive grounds map"></iframe>
           </div>
-          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6E6759">Draft interactive map &mdash; tap a marker to see the section and who rests there.</span>
+          <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#6E6759">Notable burials map &mdash; search a name, filter by category, or tap a dot for the story.</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:20px">
           <div style="background:#FFFFFF;border:1px solid #DDDAD0;padding:30px;display:flex;flex-direction:column;gap:16px">
@@ -391,6 +391,45 @@
             <span style="font-size:14px;line-height:1.8;color:#4A4438">&bull;&nbsp; Historic sections &amp; reinterred grounds<br>&bull;&nbsp; Notable resident grave sites<br>&bull;&nbsp; Entrances, office &amp; accessible routes<br>&bull;&nbsp; Suggested self-guided walking route</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section style="background:#FFFFFF;border-top:1px solid #DDDAD0">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(44px,7vw,76px) clamp(20px,5vw,40px);display:flex;flex-direction:column;gap:28px">
+
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <span style="width:36px;height:1px;background:#8A6D12"></span>
+              <span style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#8A6D12">Who Rests Here</span>
+            </div>
+            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(28px,5vw,42px);margin:0;line-height:1.1">Directory of Notable Residents</h2>
+          </div>
+          <span style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E6759;padding-bottom:6px">Showing {{ dirCount }}</span>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <input type="search" value="{{ dirQ }}" onChange="{{ dirSearch }}" placeholder="Search a name, section, or story…" style="flex:1 1 260px;max-width:360px;padding:11px 14px;border:1px solid #DDDAD0;background:#F5F4F0;font-family:'Instrument Sans',sans-serif;font-size:14px;color:#1B1712;outline:none">
+          <sc-for list="{{ dirCats }}" as="c" hint-placeholder-count="6">
+            <span onClick="{{ c.click }}" style="cursor:pointer;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:9px 13px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};white-space:nowrap">{{ c.label }}</span>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:{{ gDir }};gap:1px;background:#DDDAD0;border:1px solid #DDDAD0">
+          <sc-for list="{{ dirPeople }}" as="p" hint-placeholder-count="9">
+            <div style="background:#FFFFFF;padding:22px 24px;display:flex;flex-direction:column;gap:9px" style-hover="background:#FBFAF6">
+              <span style="align-self:flex-start;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#FFFFFF;background:{{ p.catColor }};padding:3px 9px;white-space:nowrap">{{ p.cat }}</span>
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:20px;line-height:1.15;color:#1B1712">{{ p.n }}</span>
+              <span style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-size:15px;color:#6E6759">{{ p.d }}</span>
+              <span style="font-size:13.5px;line-height:1.6;color:#4A4438">{{ p.bio }}</span>
+              <span style="margin-top:auto;padding-top:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8A6D12">{{ p.plot }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <span style="display:{{ dirEmptyDisplay }};font-size:14px;color:#6E6759">No residents match that search yet &mdash; try a surname or a section name.</span>
+        <span onClick="{{ dirShowAll }}" style="display:{{ dirMoreDisplay }};align-self:center;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#8A6D12;border:1px solid #8A6D12;padding:14px 28px" style-hover="background:#8A6D12;color:#FFFFFF">{{ dirMoreLabel }}</span>
+
       </div>
     </section>
 
@@ -504,9 +543,25 @@
   &quot;gold&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;options&quot;: [&quot;#EFC94C&quot;, &quot;#D9A821&quot;, &quot;#B5891A&quot;], &quot;default&quot;: &quot;#EFC94C&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Brand&quot;}
 }">
 class Component extends DCLogic {
-  state = { page: 'home', mob: false, videoOn: false };
+  state = { page: 'home', mob: false, videoOn: false, people: [], groups: {}, cat: 'all', dq: '', showAll: false };
+
+  loadPeople() {
+    fetch('./eden-map.html').then(r => r.text()).then(t => {
+      const grab = (k) => {
+        const i = t.indexOf('const ' + k + ' = ');
+        if (i < 0) return null;
+        const s = t.indexOf(k === 'PEOPLE' ? '[' : '{', i);
+        const e = t.indexOf(k === 'PEOPLE' ? '];' : '};', s);
+        try { return JSON.parse(t.slice(s, e + 1)); } catch (err) { return null; }
+      };
+      const people = grab('PEOPLE') || [];
+      const groups = grab('GROUPS') || {};
+      this.setState({ people, groups });
+    }).catch(() => {});
+  }
 
   componentDidMount() {
+    this.loadPeople();
     this._mq = window.matchMedia('(max-width: 860px)');
     this._onMq = () => this.setState({ mob: this._mq.matches });
     this._mq.addEventListener('change', this._onMq);
@@ -535,6 +590,13 @@ class Component extends DCLogic {
     };
     const s = shades[charcoal] || shades['#686858'];
 
+    const dq = this.state.dq.trim().toLowerCase();
+    const dirFiltered = this.state.people
+      .filter(p => this.state.cat === 'all' || p.g === this.state.cat)
+      .filter(p => !dq || (p.n || '').toLowerCase().includes(dq) || (p.bio || '').toLowerCase().includes(dq) || (p.sec || '').toLowerCase().includes(dq))
+      .sort((a, b) => (a.n || '').localeCompare(b.n || ''));
+    const dirShown = this.state.showAll ? dirFiltered : dirFiltered.slice(0, 24);
+
     const navC = (p) => (page === p ? gold : '#EDEBDD');
     const mob = this.state.mob;
 
@@ -562,6 +624,33 @@ class Component extends DCLogic {
       dmute: s.mute,
       dsub: s.sub,
 
+      dirCats: [{ k: 'all', label: 'All Residents', color: '#8A6D12' }].concat(
+        Object.keys(this.state.groups).map(k => ({ k, label: this.state.groups[k][0], color: this.state.groups[k][1] }))
+      ).map(c => ({
+        ...c,
+        bg: this.state.cat === c.k ? c.color : '#FFFFFF',
+        fg: this.state.cat === c.k ? '#FFFFFF' : '#4A4438',
+        bd: this.state.cat === c.k ? c.color : '#DDDAD0',
+        click: () => this.setState({ cat: c.k, showAll: false }),
+      })),
+      dirPeople: dirShown.map(p => ({
+        key: String(p.id),
+        n: p.n,
+        d: p.d || '—',
+        cat: (this.state.groups[p.g] || ['—', '#6E6759'])[0],
+        catColor: (this.state.groups[p.g] || ['—', '#6E6759'])[1],
+        plot: p.sec ? (p.sec + ' Section' + (p.lot ? ' · Lot ' + p.lot : '')) : 'Section unrecorded',
+        bio: p.bio || '',
+        role: p.t || '',
+      })),
+      dirCount: dirFiltered.length + ' of ' + this.state.people.length,
+      dirEmptyDisplay: dirFiltered.length ? 'none' : 'block',
+      dirMoreDisplay: (!this.state.showAll && dirFiltered.length > 24) ? 'inline-flex' : 'none',
+      dirMoreLabel: 'Show all ' + dirFiltered.length + ' residents',
+      dirShowAll: () => this.setState({ showAll: true }),
+      dirSearch: (e) => this.setState({ dq: e.target.value, showAll: false }),
+      dirQ: this.state.dq,
+      gDir: mob ? '1fr' : 'repeat(auto-fill,minmax(300px,1fr))',
       gStats: mob ? '1fr 1fr' : 'repeat(4,1fr)',
       gWhy: mob ? '1fr' : '0.9fr 1.1fr',
       gCards: mob ? '1fr' : 'repeat(3,1fr)',
